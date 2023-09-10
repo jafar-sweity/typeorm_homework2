@@ -1,5 +1,5 @@
 import express from 'express'
-
+import { DataSource } from 'typeorm';
 
 const app = express();
 
