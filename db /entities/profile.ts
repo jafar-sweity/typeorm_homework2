@@ -1,4 +1,5 @@
-import { BaseEntity, Column, DataSource, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, DataSource, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./user.js";
 
 @Entity()
 export class profile extends BaseEntity {
@@ -15,6 +16,9 @@ export class profile extends BaseEntity {
     @Column()
     dateOfBirth: Date
 
+    @OneToOne(() => User, (user) => user.profile)
+    @JoinColumn()
+    user: User;
 
 
 }

@@ -20,8 +20,7 @@ export class User extends BaseEntity {
     @JoinTable()
     roles: role[]
 
-    @OneToOne(() => profile)
-    @JoinColumn()
-    profile: profile
+
+
 
 }
