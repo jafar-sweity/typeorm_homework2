@@ -12,10 +12,11 @@ const app = express();
 app.use(express.json())
 const PORT = 3000;
 
-app.use('/permissions)', permissionRouter)
-app.use('/roles)', roleRouter)
-
 app.use('/users', UserRouter);
+app.use('/permissions', permissionRouter)
+app.use('/roles', roleRouter)
+
+
 app.listen(PORT, () => {
 
     console.log(`Hello From PORT ${PORT}`);
