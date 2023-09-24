@@ -1,6 +1,7 @@
 import expres from 'express';
 import { User } from '../db /entities/user.js';
-async function createUser(req: expres.Request, res: expres.Response) {
+import express from 'express'
+async function createUser(req: express.Request, res: express.Response) {
     try {
         const { username, password, email } = req.body;
 

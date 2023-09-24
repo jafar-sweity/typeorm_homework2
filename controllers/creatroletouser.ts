@@ -2,9 +2,9 @@
 import { getRepository } from 'typeorm';
 import { User } from '../db /entities/user.js';
 import { role } from '../db /entities/role.js';
+import express from 'express'
 
-// Define the controller function for assigning a role to a user
-async function assignRoleToUser(req, res) {
+async function assignRoleToUser(req: express.Request, res: express.Response) {
     try {
         const { userId, roleId } = req.body;
 

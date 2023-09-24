@@ -1,9 +1,7 @@
-// Import necessary modules and entities
 import { getRepository } from 'typeorm';
 import { permission } from '../db /entities/permission.js';
 import express from 'express'
 
-// Define the controller function for creating a permission
 async function createPermission(req: express.Request, res: express.Response) {
     try {
         const { name } = req.body;

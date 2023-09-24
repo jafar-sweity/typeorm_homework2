@@ -1,8 +1,8 @@
 import expres from 'express';
 import { getRepository } from 'typeorm';
 import { role } from '../db /entities/role.js';
-// Define the controller function for creating a role with permissions
-async function createRole(req: expres.Request, res: expres.Response) {
+import express from 'express'
+async function createRole(req: express.Request, res: express.Response) {
     try {
         const { name, permissions } = req.body;
 
