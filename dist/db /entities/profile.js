@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", Date)
 ], profile.prototype, "dateOfBirth", void 0);
 __decorate([
-    OneToOne(() => User, (user) => user.profile),
+    OneToOne(() => User),
     JoinColumn(),
     __metadata("design:type", User)
 ], profile.prototype, "user", void 0);

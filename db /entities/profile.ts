@@ -16,7 +16,7 @@ export class profile extends BaseEntity {
     @Column()
     dateOfBirth: Date
 
-    @OneToOne(() => User, (user) => user.profile)
+    @OneToOne(() => User)
     @JoinColumn()
     user: User;
 
