@@ -1,14 +1,15 @@
-import { getRepository } from 'typeorm';
 import { role } from '../db /entities/role.js';
+import { permission } from '../db /entities/permission.js';
 async function createRole(req, res) {
     try {
-        const { name, permissions } = req.body;
+        const { name, permissionIds } = req.body;
         const Role = new role();
         Role.name = name;
+        Role.permission = permissionIds;
+        const permissions = await permission.findBy(permissionIds);
         Role.permission = permissions;
-        const roleRepository = getRepository(role);
-        await roleRepository.save(role);
-        res.status(201).json(role);
+        await Role.save();
+        res.status(201).json(Role);
     }
     catch (error) {
         console.error(error);

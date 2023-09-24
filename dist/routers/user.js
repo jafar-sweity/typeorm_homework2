@@ -8,11 +8,10 @@ router.post('/assignrole', assignRoleToUser);
 router.get('/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
-        const user = await User.findOne({ where: { id: userId }, relations: ['roles', 'roles.permissions'] });
+        const user = await User.findOneBy({ id: userId });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        // Return the user data including roles and permissions
         res.json(user);
     }
     catch (error) {

@@ -6,13 +6,12 @@ async function createPermission(req: express.Request, res: express.Response) {
     try {
         const { name } = req.body;
 
-        const Permission = new permission();
-        Permission.name = name;
+        const newPermission = new permission();
+        newPermission.name = name;
 
-        const permissionRepository = getRepository(permission);
-        await permissionRepository.save(permission);
+        await newPermission.save();
 
-        res.status(201).json(permission);
+        res.status(201).json(newPermission);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while creating the permission' });

@@ -1,29 +1,30 @@
-// Import necessary modules and entities
-import { getRepository } from 'typeorm';
+import express from 'express';
 import { User } from '../db /entities/user.js';
 import { role } from '../db /entities/role.js';
-import express from 'express'
+import { EntityManager } from 'typeorm';
 
 async function assignRoleToUser(req: express.Request, res: express.Response) {
     try {
         const { userId, roleId } = req.body;
+        const us: string = userId
 
-        const userRepository = getRepository(User);
-        const user = await userRepository.findOne(userId);
+        const user = await User.findOneBy({ id: us });
+        const Roles = await role.findOneBy({ id: roleId })
+        console.log(user + 'ooooooooooooowo');
+
 
         if (!user) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ error: 'User not found' }).send(user);
         }
 
-        const roleRepository = getRepository(role);
-        const Role = await roleRepository.findOne(roleId);
-
-        if (!Role) {
+        if (!Roles) {
             return res.status(404).json({ error: 'Role not found' });
         }
+        user.roles.push(Roles);
 
-        user.roles.push(Role);
-        await userRepository.save(user);
+
+
+        await user.save();
 
         res.status(200).json(user);
     } catch (error) {

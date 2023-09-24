@@ -1,13 +1,11 @@
-import { getRepository } from 'typeorm';
 import { permission } from '../db /entities/permission.js';
 async function createPermission(req, res) {
     try {
         const { name } = req.body;
-        const Permission = new permission();
-        Permission.name = name;
-        const permissionRepository = getRepository(permission);
-        await permissionRepository.save(permission);
-        res.status(201).json(permission);
+        const newPermission = new permission();
+        newPermission.name = name;
+        await newPermission.save();
+        res.status(201).json(newPermission);
     }
     catch (error) {
         console.error(error);

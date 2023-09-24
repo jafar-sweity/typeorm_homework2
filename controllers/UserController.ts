@@ -10,6 +10,13 @@ async function createUser(req: express.Request, res: express.Response) {
         newUser.password = password;
         newUser.email = email;
 
+        // {
+        //    "username":"jafar sweity",
+        //    "password":"1212",
+        //    "email":"jafar@gmail.com"
+
+        // }
+
         await newUser.save();
 
         res.status(201).json({ message: 'User created successfully' });

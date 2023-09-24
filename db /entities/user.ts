@@ -19,8 +19,5 @@ export class User extends BaseEntity {
     @ManyToMany(() => role, { cascade: true })
     @JoinTable()
     roles: role[]
-
-
-
-
 }
+
