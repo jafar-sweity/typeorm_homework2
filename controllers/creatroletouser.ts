@@ -10,8 +10,6 @@ async function assignRoleToUser(req: express.Request, res: express.Response) {
 
         const user = await User.findOneBy({ id: us });
         const Roles = await role.findOneBy({ id: roleId })
-        console.log(user + 'ooooooooooooowo');
-
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' }).send(user);
@@ -20,12 +18,12 @@ async function assignRoleToUser(req: express.Request, res: express.Response) {
         if (!Roles) {
             return res.status(404).json({ error: 'Role not found' });
         }
+        if (!user.roles) {
+            user.roles = [];
+        }
+
         user.roles.push(Roles);
-
-
-
         await user.save();
-
         res.status(200).json(user);
     } catch (error) {
         console.error(error);

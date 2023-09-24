@@ -6,12 +6,14 @@ async function assignRoleToUser(req, res) {
         const us = userId;
         const user = await User.findOneBy({ id: us });
         const Roles = await role.findOneBy({ id: roleId });
-        console.log(user + 'ooooooooooooowo');
         if (!user) {
             return res.status(404).json({ error: 'User not found' }).send(user);
         }
         if (!Roles) {
             return res.status(404).json({ error: 'Role not found' });
+        }
+        if (!user.roles) {
+            user.roles = [];
         }
         user.roles.push(Roles);
         await user.save();
