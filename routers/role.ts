@@ -5,6 +5,7 @@ import { createPermission } from '../controllers/creatPermission.js';
 import { createRole } from '../controllers/creatrole.js';
 
 
+
 const router = express.Router();
 
 
